@@ -70,6 +70,6 @@ let ladoC = parseFloat(prompt("Digite o tamanho do lado A: "))
 if(verificarTriangulo(ladoA, ladoB, ladoC))
     console.log("É possivel criar um triangulo com as medidas fornecidas")
 
-//
-
-/// sa
+/*
+ Apenas um teste
+*/
