@@ -8,16 +8,16 @@ vida um fumante perderá e exiba o total em dias.
 */
 
 let vidaPerdida = (maços, anos) => {
-    let totalCigarros = (maços * (anos * 365))
-    let tempoPerdido = parseFloat(((totalCigarros * 10) / 60) / 24)
+    let totalCigarros_1 = (maços * (anos * 365))
+    let tempoPerdido_1 = parseFloat(((totalCigarros_1 * 10) / 60) / 24)
 
-    return tempoPerdido.toFixed(2)
+    return tempoPerdido_1.toFixed(2)
 }
 
-let cigarrosFumados = parseFloat(prompt("Quantos maços de cigarro você fuma por dia?: "))
-let anosFumando = parseInt(prompt("Há quantos anos você fuma?: "))
+let cigarrosFumados_1 = parseFloat(prompt("Quantos maços de cigarro você fuma por dia?: "))
+let anosFumando_1 = parseInt(prompt("Há quantos anos você fuma?: "))
 
-console.log(vidaPerdida(cigarrosFumados, anosFumando)+" Dias perdidos");
+console.log(vidaPerdida(cigarrosFumados_1, anosFumando_1)+" Dias perdidos");
 
 
 /*
@@ -26,11 +26,11 @@ exiba uma mensagem dizendo que o usuário foi multado. Nesse caso, exiba o valor
 cobrando R$ 5,00 por cada Km acima da velocidade permitida.
 */
 
-let velocidade = prompt("Qual a velocidade do carro?: ")
-if(velocidade > 80){
-    let acimaLimite = velocidade - 80
-    let multa = parseFloat(5 * acimaLimite)
-    console.log("Você foi multado!\nValor da Multa: R$"+multa)
+let velocidade_2 = prompt("Qual a velocidade do carro?: ")
+if(velocidade_2 > 80){
+    let acimaLimite_2 = velocidade_2 - 80
+    let multa_2 = parseFloat(5 * acimaLimite_2)
+    console.log("Você foi multado!\nValor da Multa: R$"+multa_2)
 }
 
 /*
@@ -38,17 +38,17 @@ if(velocidade > 80){
 Km. Calcule o preço da passagem, cobrando R$ 0.50 por Km para viagens até 200 Km e
 R$ 0.45 para viagens mais longas.
 */
-let distancia = prompt("Qual distancia deseja percorrer?: ")
-let valorPassagem
+let distancia_3 = prompt("Qual distancia deseja percorrer?: ")
+let valorPassagem_3
 
-if(distancia <= 200 && distancia > 0){
-    valorPassagem = parseFloat(distancia * 0.5)
-}else if(distancia > 200){
-    valorPassagem = parseFloat(distancia * 0.45)
+if(distancia_3 <= 200 && distancia_3 > 0){
+    valorPassagem_3 = parseFloat(distancia_3 * 0.5)
+}else if(distancia_3 > 200){
+    valorPassagem_3 = parseFloat(distancia_3 * 0.45)
 }else{
     console.log("Valor informado deve ser maior que 0!")
 }
-console.log("Valor da passagem: R$"+valorPassagem)
+console.log("Valor da passagem: R$"+valorPassagem_3)
 
 /*
 4. Crie um programa que leia o tamanho de três segmentos de reta. Analise seus
@@ -57,28 +57,28 @@ Matematicamente, para três segmentos formarem um triângulo, o comprimento de c
 lado deve ser menor que a soma dos outros dois.
 */
 let verificarTriangulo = (a, b, c) => {
-    let triangulo = false
+    let triangulo_4 = false
     if((a + b) > c && (a + c) > b && (b + c) > a)
-        triangulo = true
-    return triangulo
+        triangulo_4 = true
+    return triangulo_4
 }
 
-let ladoA = parseFloat(prompt("Digite o tamanho do lado A: "))
-let ladoB = parseFloat(prompt("Digite o tamanho do lado A: "))
-let ladoC = parseFloat(prompt("Digite o tamanho do lado A: "))
+let ladoA_4 = parseFloat(prompt("Digite o tamanho do lado A: "))
+let ladoB_4 = parseFloat(prompt("Digite o tamanho do lado A: "))
+let ladoC_4 = parseFloat(prompt("Digite o tamanho do lado A: "))
 
-if(verificarTriangulo(ladoA, ladoB, ladoC))
+if(verificarTriangulo(ladoA_4, ladoB_4, ladoC_4))
     console.log("É possivel criar um triangulo com as medidas fornecidas")
 
 /*
 5. Crie um jogo de JoKenPo (Pedra-Papel-Tesoura).
 */
-let empate = false
+let empate_5 = false
 let joKenPo = (player1, player2) => {
     if(player1 == player2)
-        empate = true
+        empate_5 = true
     else{
-        empate = false
+        empate_5 = false
         if(player1 == 1){
             if(player2 == 2)
                 return "Jogador 2 Ganhou!"
@@ -98,24 +98,24 @@ let joKenPo = (player1, player2) => {
     }
     return null
 }
-let coop
+let coop_5
 do{ 
-    if(empate == false){
+    if(empate_5 == false){
         console.log("Digite 1 para jogar contra a máquina\nDigite 2 para jogar Coop")
-        coop = prompt()
-        if(coop == 1){
+        coop_5 = prompt()
+        if(coop_5 == 1){
             console.log("\nMáquina está jogando como Jogador 2!")
         }
     }
     console.log("\nEscolha sua jogada: \n1 - Pedra \n2 - Papel \n3 - Tesoura")
-    let p1 = prompt()
-    let p2
-    if (coop == 2){
+    let p1_5 = prompt()
+    let p2_5
+    if (coop_5 == 2){
         console.log("\nEscoha sua jogada, jogador 2: \n1 - Pedra \n2 - Papel \n3 - Tesoura")
-        p2 = prompt()
+        p2_5 = prompt()
     }else{
-        p2 = Math.floor((Math.random() * 3) + 1)
-        switch(p2){
+        p2_5 = Math.floor((Math.random() * 3) + 1)
+        switch(p2_5){
             case 1:
                 console.log("\nA máquina escolheu Pedra")
                 break
@@ -127,35 +127,35 @@ do{
                 break
         }       
     }
-    let resultado = joKenPo(p1, p2)
-    if(empate)
+    let resultado_5 = joKenPo(p1_5, p2_5)
+    if(empate_5)
         console.log("Empatou\n")
     else
-        console.log("\n"+resultado)
-}while(empate)
+        console.log("\n"+resultado_5)
+}while(empate_5)
 
 /*
 6. Crie um jogo onde o computador vai sortear um número entre 1 e 5. O jogador vai
 tentar descobrir qual foi o valor sorteado.
 */
-let guess
-let anwser
+let guess_6
+let anwser_6
 do{
-    guess = prompt("Digite sua tentativa: ")
-    anwser = Math.floor(Math.random() * 5 + 1)
+    guess_6 = prompt("Digite sua tentativa: ")
+    anwser_6 = Math.floor(Math.random() * 5 + 1)
     
-    console.log("\nTentativa: "+guess)
-    console.log("Numero Sorteado: "+anwser)
-    if(guess == anwser)
+    console.log("\nTentativa: "+guess_6)
+    console.log("Numero Sorteado: "+anwser_6)
+    if(guess_6 == anwser_6)
         console.log("\nVocê Acertou!")
     else{
         console.log("\nVocê Errou =(\n")
         console.log("Digite 1 para tentar novamente")
-        let tentarNovamente = prompt()
-        if(tentarNovamente != 1)
-            guess = anwser
+        let tentarNovamente_6 = prompt()
+        if(tentarNovamente_6 != 1)
+            guess_6 = anwser_6
     }      
-}while(guess != anwser)
+}while(guess_6 != anwser_6)
 
 /*
 7. Uma empresa de aluguel de carros precisa cobrar pelos seus serviços. O aluguel de um
@@ -184,33 +184,33 @@ let aluguelCarroDeLuxo = (kilometros) =>{
 }
 
 console.log("Qual foi o carro alugado?\n1 - Carro Popular\n2 - Carro de Luxo")
-let carroAlugado
-while(carroAlugado != 1 && carroAlugado != 2){
-    carroAlugado = prompt()
-    if(carroAlugado != 1 && carroAlugado != 2)
+let carroAlugado_7
+while(carroAlugado_7 != 1 && carroAlugado_7 != 2){
+    carroAlugado_7 = prompt()
+    if(carroAlugado_7 != 1 && carroAlugado_7 != 2)
         console.log("\nOpção invalida, digite novamente")
 }
 console.log("Por quantos dias o carro foi alugado?")
-let dias = 0
-while(dias <= 0 || isNaN(dias)){
-    dias = parseInt(prompt()) 
-    if(dias <= 0 || isNaN(dias))
+let dias_7 = 0
+while(dias_7 <= 0 || isNaN(dias_7)){
+    dias_7 = parseInt(prompt()) 
+    if(dias_7 <= 0 || isNaN(dias_7))
         console.log("\nOpção invalida, digite novamente")
 }
 console.log("Quantos kilometros foram percorridos?")
-let km = -1
-while(km < 0 || isNaN(km)){
-    km = parseInt(prompt())
-    if(km < 0 || isNaN(km))
+let km_7 = -1
+while(km_7 < 0 || isNaN(km_7)){
+    km_7 = parseInt(prompt())
+    if(km_7 < 0 || isNaN(km_7))
         console.log("\nOpção invalida, digite novamente")
 }
-let valorCobrado
-if(carroAlugado == 1) // Carro Popular
-    valorCobrado = parseFloat((90 * dias) + aluguelCarroPopular(km))
+let valorCobrado_7
+if(carroAlugado_7 == 1) // Carro Popular
+    valorCobrado_7 = parseFloat((90 * dias_7) + aluguelCarroPopular(km_7))
 else
-    valorCobrado = parseFloat((150 * dias) + aluguelCarroDeLuxo(km))
+    valorCobrado_7 = parseFloat((150 * dias_7) + aluguelCarroDeLuxo(km_7))
 
-console.log("Valor a Ser cobrado do cliente: R$"+valorCobrado.toFixed(2))
+console.log("Valor a Ser cobrado do cliente: R$"+valorCobrado_7.toFixed(2))
 
 /*
 8. Um programa de vida saudável quer dar pontos por atividades físicas realizadas que
@@ -223,7 +223,7 @@ sistema funciona assim:
 Faça um programa que leia quantas horas de atividade uma pessoa teve por mês.
 Calcule e mostre quantos pontos ela teve e quanto dinheiro ela conseguiu ganhar.
 */
-let calculaPontos = (horas) => {
+let calculaPontos_8 = (horas) => {
     if(horas <= 10)
         return horas * 2
     else if(horas > 10 && horas <= 20)
@@ -231,14 +231,14 @@ let calculaPontos = (horas) => {
     else
         return horas * 10
 }
-let horasExercitadas = parseInt(prompt("Digite quantas horas você se exercitou no mês: "))
-while(isNaN(horasExercitadas) || horasExercitadas < 0){
+let horasExercitadas_8 = parseInt(prompt("Digite quantas horas você se exercitou no mês: "))
+while(isNaN(horasExercitadas_8) || horasExercitadas_8 < 0){
     console.log("Opção invalida, digite novamente")
-    horasExercitadas = parseInt(prompt())
+    horasExercitadas_8 = parseInt(prompt())
 }
-let pontos = calculaPontos(horasExercitadas)
-console.log("\nVocê conseguiu "+pontos+" pontos")
-console.log("Você faturou R$"+pontos*0.05+"! Parabéns")
+let pontos_8 = calculaPontos_8(horasExercitadas_8)
+console.log("\nVocê conseguiu "+pontos_8+" pontos")
+console.log("Você faturou R$"+pontos_8*0.05+"! Parabéns")
 
 /*
 9. Desenvolva um aplicativo que leia o salário e o sexo de vários funcionários. No final,
@@ -246,30 +246,30 @@ mostre o total de salário pago aos homens e o total pago às mulheres. O progra
 perguntar ao usuário se ele quer continuar ou não sempre que ler os dados de um
 funcionário.
 */
-let continuar = 1
-let totalHomens = 0
-let totalMulheres = 0
-while(continuar == 1){
-    let salarioFuncionario = parseFloat(prompt("Digite o salario do(a) Funcionario(a): "))
-    while(isNaN(salarioFuncionario)){
+let continuar_9 = 1
+let totalHomens_9 = 0
+let totalMulheres_9 = 0
+while(continuar_9 == 1){
+    let salarioFuncionario_9 = parseFloat(prompt("Digite o salario do(a) Funcionario(a): "))
+    while(isNaN(salarioFuncionario_9)){
         console.log("Opção invalida, digite novamente")
-        salarioFuncionario = parseFloat(prompt())
+        salarioFuncionario_9 = parseFloat(prompt())
     }
     console.log("Digite o sexo do(a) Funcionario(a) \n1 - Homem\n2 - Mulher")
-    let sexoFuncionario = prompt()
-    while(sexoFuncionario != 1 && sexoFuncionario != 2){
+    let sexoFuncionario_9 = prompt()
+    while(sexoFuncionario_9 != 1 && sexoFuncionario_9 != 2){
         console.log("Opção invalida, digite novamente")
-        sexoFuncionario = prompt()
+        sexoFuncionario_9 = prompt()
     }
-    if(sexoFuncionario == 1)
-        totalHomens += salarioFuncionario
+    if(sexoFuncionario_9 == 1)
+        totalHomens_9 += salarioFuncionario_9
     else
-        totalMulheres += salarioFuncionario
-    continuar = prompt("Digite 1 caso queira continuar: ")
+        totalMulheres_9 += salarioFuncionario_9
+    continuar_9 = prompt("Digite 1 caso queira continuar: ")
 
 }
-console.log("\nSalario total das Mulheres: R$"+totalMulheres.toFixed(2))
-console.log("Salario total dos Homens: R$"+totalHomens.toFixed(2))
+console.log("\nSalario total das Mulheres: R$"+totalMulheres_9.toFixed(2))
+console.log("Salario total dos Homens: R$"+totalHomens_9.toFixed(2))
 
 /*
 10. Crie um programa usando a estrutura “faça enquanto” que leia vários números. A
