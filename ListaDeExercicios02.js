@@ -395,3 +395,63 @@ numeros_15.forEach((element_15, index_15) => {
         console.log(`Numero ${element_15} se encontra na posição ${index_15}`)
     }
 });
+
+/*
+16. Crie uma lógica que preencha um vetor de 20 posições com números aleatórios
+(entre 0 e 99) gerados pelo computador. Logo em seguida, mostre os números gerados e
+depois coloque o vetor em ordem crescente, mostrando no final os valores ordenados.
+*/
+let numeros_16 = []
+for(let cont_16 = 0; cont_16 < 20; cont_16++){
+    numeros_16[cont_16] = Math.floor(Math.random() * 100)
+}
+numeros_16.forEach((element_16, index_16) => {
+    console.log(`Numero na posição ${index_16}: ${element_16}`)
+})
+numeros_16.sort((a, b) => {
+    return a - b
+})
+console.log("\nOrdenando informações em ordem crescente...\n")
+numeros_16.forEach((element_16, index_16) => {
+    console.log(`Numero na posição ${index_16}: ${element_16}`)
+})
+
+/*
+17. Crie um programa que leia o nome e a idade de 9 pessoas e guarde esses valores em
+dois vetores, em posições relacionadas. No final, mostre uma listagem contendo apenas
+os dados das pessoas menores de idade.
+*/
+let ages_17 = []
+let names_17 = []
+for(let cont_17 = 0; cont_17 < 9; cont_17++){
+    names_17[cont_17] = prompt("Digite o nome: ")
+    let idade_17 = parseInt(prompt("Digite a idade: "))
+    while(isNaN(idade_17) || idade_17 <= 0){
+        console.log("Idade invalida, digite novamente")
+        idade_17 = parseInt(prompt())
+    }
+    ages_17[cont_17] = idade_17
+}
+console.log("\nMenores de idade: \n")
+for(let value in ages_17){
+    if(ages_17[value] < 18)
+        console.log(`Nome: ${names_17[value]}, Idade: ${ages_17[value]}`)
+}
+
+/*
+18. Crie um registro com o nome do funcionário, cargo e salário. Leia este registro para
+um funcionário e ao final escreva o conteúdo do registro.
+*/
+let FuncionarioExemplo_18 = {
+    nome: "",
+    cargo: "",
+    salario: 0
+}
+let funcionario1_18 = FuncionarioExemplo_18
+for(let value in funcionario1_18){
+    funcionario1_18[value] = prompt(`Digite o ${value} do funcionario: `)
+}
+console.log("\nInformações do Funcionario\n")
+for(let value in funcionario1_18){
+    console.log(`${value}: ${funcionario1_18[value]}`)
+}
