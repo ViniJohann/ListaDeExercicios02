@@ -455,3 +455,230 @@ console.log("\nInformações do Funcionario\n")
 for(let value in funcionario1_18){
     console.log(`${value}: ${funcionario1_18[value]}`)
 }
+
+/*
+19. Escrever um programa para ler 5 horários. Validar cada horário fornecendo através de
+repetição. Escrever cada um deles no formato HH.MM.SS.
+*/
+let horarios_19 = [{}]
+
+let validaHorario_19 = (h, m, s) => {
+    if(isNaN(h) || isNaN(m) || isNaN(s) || h <= 0 || m < 0 || s < 0 || h > 24 || m > 59 || s > 59)
+        return false
+    return true
+}
+for(let cont_19 = 0; cont_19 < 5; cont_19++){
+    let horarioValido_19 = false
+    while(!horarioValido_19){
+        let hours_19 = parseInt(prompt(`Digite as horas do horário numero ${parseInt(cont_19)+1}: `))
+        let minutes_19 = parseInt(prompt(`Digite os minutos do horário numero ${parseInt(cont_19)+1}: `))
+        let seconds_19 = parseInt(prompt(`Digite os segundos do horário numero ${parseInt(cont_19)+1}: `))
+        if(validaHorario_19(hours_19, minutes_19, seconds_19)){
+            horarioValido_19 = true
+            horarios_19[cont_19] = {
+                hours: hours_19,
+                minutes: minutes_19,
+                seconds: seconds_19
+            }
+        }else  
+            console.log("\nHorario invalido, digite novamente\n")     
+    }
+}
+console.log()
+horarios_19.forEach((element_19, index_19) => {
+    let ajustaHorario = `${String(element_19.hours).padStart(2, '0')}.${String(element_19.minutes).padStart(2, '0')}.${String(element_19.seconds).padStart(2, '0')}`
+    console.log(`Horario numero ${parseInt(index_19)+1}: ${ajustaHorario}`)
+});
+
+/*
+20. Uma indústria faz a folha mensal de pagamentos de seus 80 empregados baseada
+no seguinte: existe uma tabela com os dados de cada funcionalidade: matrícula, nome e
+salário bruto. Escreva um programa que leia e processe a tabela e emita (escreva na
+tela), cada funcionário, seu contracheque, cujo formato é dado a seguir:
+Matrícula:
+Nome:
+Salário bruto:
+Dedução INSS:
+Salário líquido:
+(Dicas: desconto de 12%, salário líquido é a diferença entre salário bruto e a redução do
+INSS).
+*/
+let funcionario_20 = [{
+    matricula: 105777,
+    nome: "Vinícius Gabriel Johann",
+    salarioBruto: 1000
+}, 
+{
+    matricula: 101444,
+    nome: "Jose da Silva Pereira",
+    salarioBruto: 12042
+}]
+let informacoesFuncionario_20 = (funcionario_20 =>{
+    let deducaoINSS = parseFloat(funcionario_20.salarioBruto * 0.12)
+    let salarioLiquido = parseFloat(funcionario_20.salarioBruto - deducaoINSS)
+    console.log(`Matrícula: ${funcionario_20.matricula}\nNome: ${funcionario_20.nome}\nSalário bruto: ${parseFloat(funcionario_20.salarioBruto).toFixed(2)}\nDedução INSS: ${parseFloat(deducaoINSS).toFixed(2)}\nSalário líquido: ${parseFloat(salarioLiquido).toFixed(2)}`)
+})
+informacoesFuncionario_20(funcionario_20[0])
+
+/*
+21. Faça uma função que recebe, por parâmetro, a altura (alt) e o sexo de uma pessoa e
+retorna o seu peso ideal. Para homens, calcular o peso ideal usando a fórmula: peso ideal
+= 72.7 x alt - 58 e, para mulheres, peso ideal = 62.1 x alt - 44.7.
+*/
+let pesoIdeal_21 = (alt, sexo) => {
+    if(sexo === "Mulher")
+        return parseFloat(62.10 * alt - 44.70).toFixed(2)
+    if(sexo === "Homem")
+        return parseFloat(72.70 * alt - 58).toFixed(2)
+    return null
+}
+console.log("Seu peso ideal é: "+pesoIdeal_21(1.80, "Homem"))
+
+/*
+22. A prefeitura de uma cidade fez uma pesquisa entre os seus habitantes, coletando
+dados sobre o salário e número de filhos. Faça uma função que leia esses dados para um
+número não determinado de pessoas e retorne a média de salário da população, a
+média do número de filhos, o maior salário e o percentual de pessoas com salário até R$
+350,00.
+*/
+let habitantes_22 = [{
+    nome: "Vini",
+    salario: 1000,
+    filhos: 3
+}, {
+    nome: "Jose",
+    salario: 2000,
+    filhos: 2
+}, {
+    nome: "Maria",
+    salario: 349,
+    filhos: 5
+}]
+
+let mediaSalarioHabitantes_22 = (habitantes) => {
+    let maiorSalario = habitantes[0].salario
+    let somaFilhos = 0
+    let somaSalarios = 0
+    let qtdHabitantes = 0
+    let qtdHabitantes_350 = 0
+    habitantes.forEach(element => {
+        if(element.salario > maiorSalario)
+            maiorSalario = element.salario
+        somaFilhos += element.filhos
+        somaSalarios += element.salario
+        qtdHabitantes++
+        if(element.salario < 350)
+            qtdHabitantes_350++
+    });
+    return {
+        mediaSalarios: parseFloat(somaSalarios / qtdHabitantes).toFixed(2),
+        mediaFilhos: parseFloat(somaFilhos / qtdHabitantes).toFixed(2),
+        maiorSalario: maiorSalario,
+        percentual350: parseFloat((qtdHabitantes_350 / qtdHabitantes) * 100).toFixed(2)+"%"
+    }
+}
+console.log(mediaSalarioHabitantes_22(habitantes_22))
+
+/*
+23. Criar e imprimir a matriz identidade MI[1..7,1..7] em que todos os elementos da
+diagonal principal são iguais a 1 e os demais são nulos.
+*/
+let matriz_23 = []
+
+for(let linha = 0; linha < 7; linha++){
+    matriz_23[linha] = []
+    for(let coluna = 0; coluna < 7; coluna++){
+        if(coluna === linha)
+            matriz_23[linha][coluna] = 1
+        else
+            matriz_23[linha][coluna] = 0
+    }
+}
+console.log(matriz_23)
+
+/*
+24. Dada uma matriz M[1..6,1..8], criar um vetor C que contenha, em cada posição, a
+quantidade de elementos negativos da linha correspondente de M.
+*/
+let M_24 = [
+    [-2, 8, 4, -9, 5, -1, 3, -6],
+    [7, 9, -10, -5, 0, -3, -8, 2],
+    [1, -7, 6, -4, 10, -2, -3, 8],
+    [9, -1, -10, -3, 2, -9, 6, 7],
+    [-6, 4, -8, 5, 10, 2, 3, -5],
+    [8, -9, 7, 3, 6, 1, -4, -10]
+];
+let C_24 = []
+
+for(let linha = 0; linha < 6; linha++){
+    let cont = 0
+    for(let coluna = 0; coluna < 8; coluna++){
+        if(M_24[linha][coluna] < 0)
+            cont++ 
+    }
+    C_24[linha] = cont
+}
+console.log(C_24)
+
+/*
+25. Faça um algoritmo que leia uma matriz de 15 X 20 de números reais e mostre a soma
+de cada coluna separadamente.
+*/
+
+let M_25 = [
+    [3, -4, 2, 8, -1, 5, -6, 7, -3, 9, -2, 6, -8, 4, -5, 1, 10, -9, -7, 0],
+    [9, -5, 1, 0, -10, 2, -3, 7, 6, -8, -6, 4, -2, -1, 3, 8, -7, 5, -9, 10],
+    [-2, 5, -4, 3, 6, -1, -7, 8, 10, -10, 7, 0, 2, -3, 1, -8, 4, -9, 9, -6],
+    [7, -8, -1, 6, 2, -9, 5, -4, 0, 3, 1, -3, 9, -2, -10, 8, -5, -7, 4, 10],
+    [-3, 6, 10, -5, 4, 0, -7, -9, 8, -6, 1, -10, 3, -4, 9, -8, 2, 5, 7, -1],
+    [8, -7, 2, -6, 5, -10, 3, 9, -4, 1, 0, -5, 7, -1, 4, -3, 6, -9, -8, 10],
+    [4, -1, 3, 5, 9, -6, -4, 0, -7, 10, -2, 8, -5, 7, -9, -8, 2, -3, -10, 1],
+    [0, 9, 7, -3, -8, -4, 5, -2, 8, -5, 1, -1, 6, -7, 10, -10, 3, 2, 4, -6],
+    [2, 6, -9, -5, 8, -7, 10, 1, -3, 4, 7, -10, 0, -6, -8, 3, -4, 5, -2, 9],
+    [-6, -10, 8, -9, 7, -2, 4, 3, -1, 5, -8, 9, -4, -7, 6, -3, 0, -5, 1, 2],
+    [-8, 0, -6, 2, 3, -5, 9, 4, -2, -10, 1, -7, 5, 6, -4, 10, -9, 7, -1, 8],
+    [10, -3, -2, 1, 6, -8, 0, 5, -4, 7, 9, -9, 2, 3, -1, -7, -6, -10, 8, 4],
+    [6, -9, 4, 7, -4, 1, -8, -10, 3, 2, 5, -2, 8, -6, 0, -5, -1, -7, 9, 10],
+    [-5, 2, -7, -4, 10, 9, 1, -6, 3, -1, 8, -3, -10, 0, -9, 4, -8, -2, 6, 5],
+    [1, -6, 5, -8, -3, 10, 6, -9, -2, 8, -4, 7, -1, -5, 2, 0, 9, 3, -10, 4]
+];
+
+let somaColunas_25 = (matriz) => {
+    let totalColunas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    for(let linhas = 0; linhas < matriz.length; linhas++){
+        for(let colunas = 0; colunas < matriz[linhas].length; colunas++){
+            totalColunas[colunas] += matriz[linhas][colunas]
+        }
+    }
+    return totalColunas
+}
+somaColunas_25(M_25).forEach((element, index) => {
+    console.log(`Soma dos valores da coluna ${parseInt(index)+1}: ${element}`)
+});
+
+/*
+26. Dadas duas matrizes numéricas A[1..3,1..5] e B[1..3,1..5], calcular a matriz produto
+P[1..3,1..5].
+*/
+let A_26 = [
+    [1, 2, 3, 4, 5],
+    [6, 7, 8, 9, 10],
+    [11, 12, 13, 14, 15]
+];
+let B_26 = [
+    [-1, -2, -3, -4, -5],
+    [-6, -7, -8, -9, -10],
+    [-11, -12, -13, -14, -15]
+];
+
+let calcularProdutoMatriz = (A, B) => {
+    let matrizProduto = []
+    for(let linhas = 0; linhas < 3; linhas++){
+        matrizProduto[linhas] = []
+        for(let colunas = 0; colunas < 5; colunas++){
+            matrizProduto[linhas][colunas] = (A[linhas][colunas] * B[linhas][colunas])
+        }
+    }
+    return matrizProduto
+}
+console.log(calcularProdutoMatriz(A_26, B_26))
