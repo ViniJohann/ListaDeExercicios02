@@ -681,4 +681,373 @@ let calcularProdutoMatriz = (A, B) => {
     }
     return matrizProduto
 }
-console.log(calcularProdutoMatriz(A_26, B_26))
+console.log("Raiz matriz P: "+calcularProdutoMatriz(A_26, B_26))
+
+/*
+27. Elaborar um algoritmo que leia uma matriz M(6,6) e um valor A. Após a leitura,
+multiplicar a matriz M pelo valor A e colocar os valores da matriz multiplicados por A em
+um vetor V(36). Escrever o vetor V no final.
+*/
+const M_27 = [
+    [1, 2, 3, 4, 5, 6],
+    [7, 8, 9, 10, 11, 12],
+    [13, 14, 15, 16, 17, 18],
+    [19, 20, 21, 22, 23, 24],
+    [25, 26, 27, 28, 29, 30],
+    [31, 32, 33, 34, 35, 36]
+  ];
+
+let multiplicaMatriz_27 = (matriz, multiplicador) => {
+    let matrizResultado_27 = []
+    let cont_27 = 0
+    for(let linhas = 0; linhas < matriz.length; linhas++){
+        matriz[linhas].forEach(element => {
+            matrizResultado_27[cont_27] = parseFloat(element * multiplicador)
+            cont_27++
+        });
+    }
+    return matrizResultado_27
+}
+console.log(multiplicaMatriz_27(M_27, 15))
+
+/*
+28. Fazer um algoritmo para receber uma matriz 10 x 10 e devolver o resultado pedido no
+item:
+a) a soma dos elementos acima da diagonal principal;
+b) a soma dos elementos abaixo da diagonal principal;
+*/
+const M_28 = [
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+    [31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+    [41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+    [51, 52, 53, 54, 55, 56, 57, 58, 59, 60],
+    [61, 62, 63, 64, 65, 66, 67, 68, 69, 70],
+    [71, 72, 73, 74, 75, 76, 77, 78, 79, 80],
+    [81, 82, 83, 84, 85, 86, 87, 88, 89, 90],
+    [91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
+  ];
+
+let algoritmo_28 = (matriz) => {
+    let somaAcima_28 = 0
+    let somaAbaixo_28 = 0
+    for(let linhas = 0; linhas < matriz.length; linhas++){
+        matriz[linhas].forEach((element, index) => {
+                if(index == (linhas+1))
+                    somaAcima_28 += element
+                if(index == (linhas-1))
+                    somaAbaixo_28 += element
+        });
+    }
+    console.log("A soma dos elementos acima da diagonal principal é: "+somaAcima_28)
+    console.log("A soma dos elementos abaixo da diagonal principal é: "+somaAbaixo_28)
+}
+algoritmo_28(M_28)
+
+/*
+29. Escreva um algoritmo que leia uma matriz M(5,5) e calcule as somas:
+a) da linha 4 de M;
+b) da coluna 2 de M;
+c) da diagonal principal;
+d) todos os elementos da matriz M.
+Escrever essas somas e a matriz.
+*/
+const M_29 = [
+    [1, 2, 3, 4, 5],
+    [6, 7, 8, 9, 10],
+    [11, 12, 13, 14, 15],
+    [16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25]
+  ];
+
+let algoritmo_29 = (matriz) => {
+    let somaLinha4_29 = 0
+    let somaColuna2_29 = 0
+    let somaDiagonalPrincipal_29 = 0
+    let somaTotal_29 = 0
+
+    for(let linhas = 0; linhas < matriz.length; linhas++){
+        for(let colunas = 0; colunas < matriz[linhas].length; colunas++){
+            if(linhas == 4){
+                somaLinha4_29 += matriz[linhas][colunas]
+            }
+            if(colunas == 2){
+                somaColuna2_29 += matriz[linhas][colunas]
+            }
+            if(linhas == colunas){
+                somaDiagonalPrincipal_29 += matriz[linhas][colunas]
+            }
+            somaTotal_29 += matriz[linhas][colunas]
+        }
+    }
+    console.log("O total da linha 4 é: "+somaLinha4_29)
+    console.log("O total da coluna 2 é: "+somaColuna2_29)
+    console.log("O total da Diagonal Principal é: "+somaDiagonalPrincipal_29)
+    console.log("O total da matriz é: "+somaTotal_29)
+}
+algoritmo_29(M_29)
+
+/*
+30. Escrever um algoritmo que lê uma matriz M(5,5) e cria 2 vetores SL(5) e SC(5) que
+contenham, respectivamente, as somas das linhas e das colunas de M. Escrever a matriz
+e os vetores criados.
+*/
+const M_30 = [
+    [1, 2, 3, 4, 5],
+    [6, 7, 8, 9, 10],
+    [11, 12, 13, 14, 15],
+    [16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25]
+  ];
+
+let algoritmo_30 = (matriz) => {
+    let somaLinhas = [0, 0, 0, 0, 0]
+    let somaColunas = [0, 0, 0, 0, 0]
+
+    for(let linhas = 0; linhas < matriz.length; linhas++){
+        for(let colunas = 0; colunas < matriz[linhas].length; colunas++){
+            somaLinhas[colunas] += matriz[linhas][colunas]
+            somaColunas[linhas] += matriz[linhas][colunas]
+        }
+    }
+    console.log("Matriz inserida")
+    console.log(matriz)
+    console.log("Soma das Linhas: "+somaLinhas)
+    console.log("Soma das Colunas: "+somaColunas)
+}
+algoritmo_30(M_30)
+
+/*
+31. Escreva um algoritmo que leia um número inteiro A e uma matriz V 30 x 30 de inteiros.
+Conte quantos valores iguais a A estão na matriz. Crie, a seguir, uma matriz X contendo
+todos os elementos de V diferentes de A. Mostre os resultados.
+*/
+let M_31 = [
+    [7, 2, 4, 7, 3, 3, 8, 2, 8, 3, 5, 4, 2, 8, 6, 4, 8, 3, 1, 4, 7, 5, 1, 5, 5, 7, 6, 5, 7, 8],
+    [4, 7, 8, 3, 6, 3, 7, 4, 4, 8, 4, 1, 2, 6, 2, 4, 6, 8, 5, 5, 1, 3, 3, 7, 6, 6, 3, 5, 8, 6],
+    [2, 1, 3, 7, 1, 2, 8, 6, 6, 7, 5, 8, 7, 5, 7, 4, 5, 1, 7, 6, 4, 8, 2, 2, 5, 5, 1, 2, 3, 7],
+    [3, 7, 3, 8, 7, 8, 4, 8, 3, 8, 5, 3, 2, 7, 3, 8, 3, 5, 7, 1, 8, 5, 5, 6, 1, 6, 3, 1, 8, 3],
+    [2, 7, 3, 7, 5, 2, 2, 1, 5, 1, 4, 8, 4, 4, 8, 2, 4, 2, 3, 7, 5, 8, 3, 7, 8, 7, 4, 7, 5, 5],
+    [7, 7, 6, 5, 7, 3, 4, 7, 3, 4, 7, 3, 8, 1, 6, 5, 4, 1, 5, 8, 6, 1, 1, 3, 8, 3, 1, 1, 4, 4],
+    [2, 8, 6, 5, 8, 6, 7, 7, 3, 5, 8, 7, 3, 8, 3, 8, 1, 2, 7, 5, 7, 7, 5, 3, 7, 4, 7, 2, 1, 2],
+    [7, 4, 1, 6, 1, 4, 7, 7, 8, 4, 3, 7, 3, 7, 5, 6, 3, 3, 4, 2, 6, 4, 8, 2, 4, 6, 5, 2, 7, 7],
+    [3, 5, 5, 6, 5, 4, 2, 6, 4, 6, 2, 8, 5, 6, 4, 8, 8, 1, 8, 2, 3, 7, 8, 2, 5, 2, 2, 1, 1, 2],
+    [7, 8, 4, 7, 1, 2, 8, 4, 8, 7, 2, 3, 1, 1, 1, 6, 2, 4, 6, 2, 4, 5, 4, 3, 3, 3, 3, 4, 1, 6],
+    [2, 4, 6, 7, 6, 7, 3, 7, 6, 2, 2, 7, 5, 2, 8, 1, 6, 1, 5, 3, 2, 7, 2, 5, 1, 1, 7, 5, 4, 6],
+    [3, 8, 6, 1, 6, 1, 4, 1, 6, 5, 6, 4, 1, 6, 2, 2, 1, 6, 8, 8, 1, 4, 2, 6, 4, 5, 7, 3, 2, 6],
+    [2, 7, 4, 7, 4, 8, 1, 6, 4, 2, 2, 3, 2, 8, 4, 6, 8, 6, 1, 4, 1, 6, 1, 4, 6, 1, 8, 8, 1, 5],
+    [6, 2, 3, 3, 8, 1, 5, 7, 2, 2, 7, 3, 1, 3, 2, 7, 3, 8, 6, 3, 7, 8, 5, 6, 6, 6, 8, 2, 7, 5],
+    [4, 2, 5, 5, 5, 1, 7, 5, 7, 1, 7, 7, 1, 8, 6, 1, 7, 1, 2, 1, 3, 1, 6, 7, 2, 6, 3, 8, 3, 5],
+    [7, 4, 7, 3, 4, 2, 1, 7, 6, 7, 2, 8, 1, 7, 7, 6, 1, 2, 7, 7, 7, 2, 1, 2, 6, 6, 3, 6, 2, 1],
+    [8, 4, 2, 6, 7, 1, 4, 7, 3, 5, 3, 3, 7, 1, 1, 1, 8, 4, 2, 5, 4, 7, 8, 6, 5, 2, 3, 6, 6, 6],
+    [1, 1, 7, 4, 5, 4, 6, 1, 6, 1, 5, 1, 2, 5, 6, 6, 5, 3, 2, 1, 6, 3, 7, 1, 6, 6, 2, 1, 3, 2],
+    [4, 5, 7, 1, 5, 6, 7, 6, 1, 5, 4, 6, 1, 6, 4, 5, 5, 3, 6, 8, 6, 4, 7, 7, 7, 5, 8, 1, 3, 7],
+    [1, 2, 5, 4, 3, 4, 3, 6, 3, 2, 3, 6, 1, 8, 4, 5, 7, 5, 2, 6, 4, 2, 5, 1, 5, 2, 6, 6, 3, 8],
+    [7, 4, 6, 6, 1, 1, 3, 4, 2, 4, 1, 5, 8, 1, 6, 6, 3, 6, 6, 3, 7, 3, 7, 1, 2, 2, 4, 8, 2, 2],
+    [8, 3, 8, 1, 8, 4, 8, 5, 3, 8, 3, 4, 3, 2, 6, 6, 2, 6, 6, 2, 8, 5, 2, 7, 2, 8, 8, 3, 2, 8],
+    [2, 5, 5, 4, 6, 1, 5, 2, 6, 8, 2, 5, 8, 1, 8, 2, 5, 4, 5, 6, 6, 7, 3, 6, 3, 5, 8, 1, 2, 7],
+    [5, 7, 3, 1, 2, 3, 2, 2, 1, 2, 5, 5, 4, 3, 5, 7, 2, 4, 4, 7, 5, 1, 6, 7, 7, 6, 2, 2, 5, 5],
+    [8, 8, 2, 7, 6, 5, 8, 7, 2, 8, 6, 5, 4, 2, 1, 5, 3, 2, 4, 4, 2, 1, 5, 5, 1, 3, 7, 3, 1, 2],
+    [5, 4, 4, 3, 1, 2, 8, 1, 7, 4, 4, 4, 3, 2, 2, 2, 3, 6, 8, 6, 5, 2, 3, 5, 2, 4, 1, 8, 5, 5],
+    [7, 1, 8, 7, 4, 3, 8, 7, 2, 8, 3, 8, 5, 7, 7, 8, 6, 3, 3, 5, 4, 2, 2, 4, 6, 5, 4, 2, 3, 3],
+    [3, 8, 6, 8, 3, 4, 2, 6, 3, 1, 3, 3, 8, 3, 6, 2, 6, 8, 3, 1, 3, 2, 3, 5, 7, 5, 2, 2, 6, 6],
+    [4, 6, 6, 7, 5, 2, 6, 7, 4, 6, 4, 3, 2, 5, 8, 6, 2, 3, 5, 2, 4, 5, 2, 5, 4, 3, 8, 4, 4, 7],
+    [3, 4, 6, 8, 8, 5, 3, 1, 4, 8, 5, 6, 6, 5, 3, 1, 5, 5, 5, 6, 8, 5, 1, 3, 8, 1, 6, 1, 8, 8]
+]
+
+let algoritmo_31 = (matriz, inteiro) => {
+    let qtdInteirosIguais = 0
+    let matrizSemInteiro = []
+    for(let linhas = 0; linhas < matriz.length; linhas++){
+        matriz[linhas].forEach((element, index) => {
+            if(element == inteiro)
+                qtdInteirosIguais++
+            else{
+                matrizSemInteiro.push(element)
+            }
+        });
+    }
+    console.log("Quantidade de "+inteiro+" na matriz é: "+qtdInteirosIguais)
+    console.log("Nova matriz sem o "+inteiro)
+    console.log(matrizSemInteiro)
+}
+algoritmo_31(M_31, 8)
+
+/*
+32. Escrever um algoritmo que lê uma matriz M(12,13) e divida todos os 13 elementos de
+cada uma das 12 linhas de M pelo maior elemento em módulo daquela linha. Escrever a
+matriz lida e a modificada.
+*/
+let M_32 = [
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+    [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+    [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52],
+    [53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65],
+    [66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78],
+    [79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91],
+    [92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104],
+    [105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117],
+    [118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130],
+    [131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143],
+    [144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156]
+  ]
+
+let algoritmo_32 = (matriz) => {
+    let maior = matriz[0][0]
+    let matrizModificada = []
+    for(let linhas = 0; linhas < matriz.length; linhas++){
+        matrizModificada[linhas] = []
+        for(let coluna = 0; coluna < matriz[1].length; coluna++){
+            if(matriz[linhas][coluna] > maior)
+                maior = matriz[linhas][coluna]
+        }
+        for(let coluna = 0; coluna < matriz[linhas].length; coluna++){
+            matrizModificada[linhas][coluna] = parseFloat(matriz[linhas][coluna] / maior).toFixed(2)
+        }
+    }
+    console.log("Matriz informada")
+    console.log(matriz)
+    console.log("Matriz modificada")
+    console.log(matrizModificada)
+}
+algoritmo_32(M_32)
+
+/*
+33. Faça um algoritmo que leia uma matriz 3 x 3 e após a leitura, multiplique os
+elementos da diagonal principal com a média dos elementos da diagonal secundária.
+*/
+const M_33 = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ];
+  
+let algoritmo_33 = (matriz) => {
+    let totalSecundaria = 0
+    let diagonalPrincipal = []
+    let diagonalSecundaria = []
+    let PrincipalMultiplicada = []
+    for(let linha = 0; linha < matriz.length; linha++){
+        matriz[linha].forEach((element, index) => {
+            if(linha === index){
+                diagonalPrincipal.push(element)
+            }
+        });
+    }
+    for(let i = 0; i < matriz.length; i++){
+        diagonalSecundaria[i] = matriz[i][matriz.length -i -1]
+    }
+    for(let i = 0; i < diagonalSecundaria.length; i++){
+        totalSecundaria += diagonalSecundaria[i]
+    }
+    for(let i = 0; i < diagonalPrincipal.length; i++){
+        PrincipalMultiplicada[i] = parseFloat(diagonalPrincipal[i] / (totalSecundaria / diagonalSecundaria.length)).toFixed(2)
+    }
+    return PrincipalMultiplicada
+}
+console.log(algoritmo_33(M_33))
+
+/*
+34. Faça um algoritmo que leia uma matriz 50 x 50 de números reais. A seguir, multiplique
+cada linha pelo elemento da diagonal principal daquela linha. Mostre a matriz após as
+multiplicações.
+*/
+const M_34 = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ];
+
+let algoritmo_34 = (matriz) => {
+    let diagonalPrincipal = []
+    let matrizMultiplicada = []
+    for(let linha = 0; linha < matriz.length; linha++){
+        matrizMultiplicada[linha] = []
+        for(let coluna = 0; coluna < matriz[linha].length; coluna++){
+            if(coluna === linha){
+                diagonalPrincipal[linha] = matriz[linha][coluna]
+            }
+        }
+        for(let coluna = 0; coluna < matriz[linha].length; coluna++){
+            matrizMultiplicada[linha][coluna] = parseInt(matriz[linha][coluna] * diagonalPrincipal[linha])
+        }
+    }
+    return matrizMultiplicada
+}
+console.log(algoritmo_34(M_34)) // Testado com uma matriz de 3x3, porque a de 50x50 ia ficar enorme
+
+/*
+35. Elaborar um algoritmo que leia um conjunto de 30 valores e os coloca em 2 vetores
+conforme forem pares ou ímpares. O tamanho do vetor é de 5 posições. Se algum vetor
+estiver cheio, escrevê-lo. Terminada a leitura, escrever o conteúdo dos dois vetores. Cada
+vetor pode ser preenchido quantas vezes forem necessárias.
+*/
+let M_35 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+
+let algoritmo_35 = (array) => {
+    let arrayPares = []
+    let ImprimirPar = false
+    let arrayImpares = []
+    let ImprimirImpar = false
+
+    for(let i = 0; i < array.length; i++){
+        if(array[i] % 2 === 0){
+            ImprimirPar = true
+            arrayPares.push(array[i])
+        }else{
+            ImprimirImpar = true
+            arrayImpares.push(array[i])
+        }
+        if(arrayPares.length === 5){
+            console.log("Pares: "+arrayPares)
+            arrayPares = []
+            ImprimirPar = false
+        }
+        if(arrayImpares.length === 5){
+            console.log("Impares: "+arrayImpares)
+            arrayImpares = []
+            ImprimirImpar = false
+        }
+    }
+    if(ImprimirPar)
+        console.log("Pares: "+arrayPares)
+    if(ImprimirImpar)
+        console.log("Impares: "+arrayImpares)
+}
+algoritmo_35(M_35)
+
+/*
+36. Escreva um algoritmo que leia um vetor de 13 elementos inteiros, que é o Gabarito de
+um teste da loteria esportiva. Leia, a seguir, para cada um dos 100 apostadores, o número
+do seu cartão e um vetor de Respostas de 13 posições. Verifique para cada apostador o
+número de acertos, comparando o vetor de Gabarito com o vetor de Respostas. Escreva
+o número do apostador e o número de acertos. Se o apostador tiver 13 acertos, mostrar a
+mensagem "Parabéns, tu foi o GANHADOR".
+*/
+let gabarito_36 = [1, 3, 5, 6, 9, 10, 12, 19, 23, 25, 28, 29, 32]
+
+let verificaAcertos_36 = (gabarito, respostas) => {
+    let acertos = 0;
+    for (let i = 0; i < gabarito.length; i++) {
+        if (gabarito.includes(respostas[i]))
+            acertos++;
+    }
+    return acertos;
+}
+
+
+let algoritmo_36 = (gabarito) => {
+    for(let i = 1; i <= 100; i++){
+        let apostas = []
+        for(let x = 0; x < 13; x++){
+            apostas[x] = Math.floor((Math.random() * 50) + 1)
+        }
+        console.log(`Apostador numero ${i}, \nSuas apostas: ${apostas}\nGabarito: ${gabarito}\nVocê conseguiu ${(verificaAcertos_36(gabarito, apostas))} acertos\n`)
+        if(verificaAcertos_36(gabarito, apostas) === 13)
+            console.log("Parabéns, tu foi o GANHADOR\n")
+    }
+}
+
+algoritmo_36(gabarito_36)
