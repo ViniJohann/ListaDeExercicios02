@@ -1037,7 +1037,6 @@ let verificaAcertos_36 = (gabarito, respostas) => {
     return acertos;
 }
 
-
 let algoritmo_36 = (gabarito) => {
     for(let i = 1; i <= 100; i++){
         let apostas = []
@@ -1051,3 +1050,130 @@ let algoritmo_36 = (gabarito) => {
 }
 
 algoritmo_36(gabarito_36)
+
+/*
+37. Escreva um algoritmo que leia um vetor G de 20 elementos caractere que representa
+o gabarito de uma prova. A seguir, para cada um dos 50 alunos da turma, leia o vetor de
+respostas (R) do aluno e conte o número de acertos. Mostre o número de acertos do
+aluno e uma mensagem “APROVADO” se a quantidade de acertos for maior ou igual a 12;
+e mostre uma mensagem de “REPROVADO”, caso contrário.
+*/
+let contaAcertos_37 = (gabarito, respostas) =>{
+    let acertos = 0
+    for(let i = 0; i < gabarito.length; i++){
+        if(gabarito[i] === respostas[i])
+            acertos++
+    }
+    return acertos
+}
+let criaRespostasAlunos_37 = () =>{
+    let respostasAlunos = []
+    for(let i = 0;  i < 50; i++){
+        respostasAlunos[i] = []
+        for(let j = 0; j < 20; j++){
+            respostasAlunos[i][j] = Math.floor(Math.random() * 20 + 1)
+        }
+    }
+    return respostasAlunos
+}
+
+let algoritmo_37 = (gabarito, respostas) => {
+    for(let i = 0; i < respostas.length; i++){
+        console.log(`-- Resultado do aluno ${i+1} --\nRespostas do aluno: ${respostas[i]}\nAcertos: ${contaAcertos_37(gabarito, respostas[i])}`)
+        if(contaAcertos_37(gabarito, respostas[i]) >= 12)
+            console.log("Aluno Aprovado!\n")
+        else
+            console.log("Aluno Reprovado!\n")
+    }
+}
+let gabarito_37 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+algoritmo_37(gabarito_37, criaRespostasAlunos_37())
+
+/*
+38. Elabore um algoritmo que leia um vetor de 6 posições e após sua leitura leia outra
+variável identificadora que calcule a operação conforme a informação contida nesta
+variável:
+1- soma dos elementos;
+2- produto dos elementos;
+3- média dos elementos;
+4- ordene os elementos em ordem crescente;
+5- mostre o vetor.
+*/
+let vetor_38 = []
+for(let i = 0; i < 6; i++){
+    vetor_38[i] = parseInt(prompt(`Digite o numero da posição ${i} do vetor: `))
+}
+let variavel_38 = 0
+do{
+    let soma_38 = 0
+    let cont_38 = 0
+    console.log(("\nDigite a operação que deseja realizar: \n1 - soma dos elementos\n2 - produto dos elementos\n3 - média dos elementos\n4 - ordene os elementos em ordem crescente\n5 - mostre o vetor"))
+    variavel_38 = parseInt(prompt())
+    switch(variavel_38){
+        case 1:
+            soma_38 = 0
+            for(let i = 0; i < vetor_38.length; i++){
+                soma_38 += vetor_38[i]
+            }
+            console.log(`\nA soma dos elementos do vetor é: ${soma_38}`)
+            break;
+        case 2:
+            let produto_38 = vetor_38.reduce((acc, current) => acc * current, 1);
+            console.log(`\nO produto dos elementos é: ${produto_38}`)
+            break;
+        case 3: 
+            for(let i = 0; i < vetor_38.length; i++){
+                soma_38 += vetor_38[i]
+                cont_38++
+            }
+            console.log(`\nA media dos elementos é: ${parseFloat(soma_38 / cont_38).toFixed(2)}`)
+            break;
+        case 4:
+            vetor_38 = vetor_38.sort((a, b ) => a - b)
+            console.log("\nO vetor foi ordenado com sucesso!")
+            break;
+        case 5:
+            console.log("\nVetor: ",vetor_38)
+            break;
+        default:
+            console.log("\nEscolha invalida!")
+            variavel_38 = 0
+            break;
+    }
+    let escolha_38 = 0
+    do{
+        console.log("\nDeseja continuar?\n1 - Continuar\n2 - Encerrar")
+        escolha_38 = prompt("Digite sua escolha: ")
+    }while(escolha_38 != 1 && escolha_38 != 2)
+    if(escolha_38 == 1)
+        variavel_38 = 0
+}while(variavel_38 === 0)
+
+/*
+39. Faça um algoritmo que leia um vetor (A) de 100 posições. Em seguida, compacte o
+vetor, retirando os valores nulos e negativos. Coloque o resultado no vetor B.
+*/
+let vetorA_39 = []
+let vetorB_39 = []
+
+for(let i = 0; i < 100; i++){
+    vetorA_39[i] = prompt(`Digite o valor da posição ${i} do Vetor A: `)
+    if(vetorA_39[i] === "")
+        vetorA_39[i] = null
+}
+
+vetorA_39.forEach(element => {
+    if(element != null && element >= 0)
+        vetorB_39.push(element)
+            
+});
+console.log("Vetor B: ",vetorB_39)
+
+/*
+40. Faça um algoritmo que leia um vetor de 5 elementos inteiros, correspondentes ao
+resultado oficial da Loto. A seguir, leia 50 conjuntos de vetores (com 5 elementos inteiros
+cada), representando as apostas feitas. Compare os números das apostas com o
+resultado oficial e mostre uma mensagem ("Ganhador") se todos os números
+corresponderem ao resultado oficial. (Observação: não é necessário procurar por ternos
+e quadras, apenas por quinas.)
+*/
