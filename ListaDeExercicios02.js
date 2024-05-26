@@ -1177,3 +1177,46 @@ resultado oficial e mostre uma mensagem ("Ganhador") se todos os números
 corresponderem ao resultado oficial. (Observação: não é necessário procurar por ternos
 e quadras, apenas por quinas.)
 */
+
+let gabarito_40 = [1, 2, 3, 4, 5]
+let apostas_40 = []
+
+for(let i = 0; i < 50; i++){
+    apostas_40[i] = []
+    console.log(`\n-- Jogador numero ${i+1} --`)
+    for(let j = 0; j < 5; j++){
+        apostas_40[i][j] = parseInt(prompt(`Digite sua ${j+1}° aposta: `))
+    }
+}
+let contaAcertos_40 = (resultados, apostas) => {
+    let apostasOrganizadas = apostas.sort((a, b) => a - b)
+    let resultadosOrganizados = resultados.sort((a, b) => a - b)
+    let acertos = 0
+    for(let i = 0; i < resultadosOrganizados.length; i++){
+        if(resultadosOrganizados[i] == apostasOrganizadas[i]){
+            acertos++
+        }
+    }
+    return acertos
+}
+for(let i = 0; i < apostas_40.length; i++){
+    console.log(`\n-- Resultado do Jogador Numero ${i+1} --`)
+    console.log(`Apostas: ${apostas_40[i]}`)
+    console.log(`Numeros sorteados: ${gabarito_40}`)
+    if(contaAcertos_40(gabarito_40, apostas_40[i]) == 5)
+        console.log("Ganhador!")
+    else
+        console.log("Mais sorte da proxima vez")
+}
+
+/*
+41. Dado o objeto pessoa com propriedades nome e idade, acesse e imprima o valor de
+idade. Adicione uma nova propriedade chamada email ao objeto pessoa que já possui
+nome e idade.
+*/
+let pessoa_41 = {
+    nome: "Vini",
+    idade: 22
+}
+console.log(pessoa_41.idade)
+pessoa_41.email = "vinigj6754@gmail.com"
