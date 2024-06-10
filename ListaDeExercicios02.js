@@ -1177,40 +1177,46 @@ resultado oficial e mostre uma mensagem ("Ganhador") se todos os números
 corresponderem ao resultado oficial. (Observação: não é necessário procurar por ternos
 e quadras, apenas por quinas.)
 */
-let vetor_40 = [1, 2, 3, 4, 5]
-let conjuntoVetores_40 = []
 
-let contaAcertos_40 = (gabarito, tentativa) =>{
-    let qtdAcertos = 0
-    gabarito.forEach((element, index) => {
-        if(element === tentativa[index])
-            qtdAcertos++
-    });
-    return qtdAcertos
-}
+let gabarito_40 = [1, 2, 3, 4, 5]
+let apostas_40 = []
 
-/*Gerar automatico para teste
 for(let i = 0; i < 50; i++){
-    conjuntoVetores_40[i] = []
+    apostas_40[i] = []
+    console.log(`\n-- Jogador numero ${i+1} --`)
     for(let j = 0; j < 5; j++){
-        conjuntoVetores_40[i][j] = Math.floor(Math.random() * 15 + 1)
-    }
-}*/
-
-//Lendo cada aposta
-for(let i = 0; i < 50; i++){
-    conjuntoVetores_40[i] = []
-    console.log(`\nJogador numero ${i + 1}`)
-    for(let j = 0; j < 5; j++){
-        conjuntoVetores_40[i][j] = prompt(`Digite o ${j+1}° numero: `)
+        apostas_40[i][j] = parseInt(prompt(`Digite sua ${j+1}° aposta: `))
     }
 }
+let contaAcertos_40 = (resultados, apostas) => {
+    let apostasOrganizadas = apostas.sort((a, b) => a - b)
+    let resultadosOrganizados = resultados.sort((a, b) => a - b)
+    let acertos = 0
+    for(let i = 0; i < resultadosOrganizados.length; i++){
+        if(resultadosOrganizados[i] == apostasOrganizadas[i]){
+            acertos++
+        }
+    }
+    return acertos
+}
+for(let i = 0; i < apostas_40.length; i++){
+    console.log(`\n-- Resultado do Jogador Numero ${i+1} --`)
+    console.log(`Apostas: ${apostas_40[i]}`)
+    console.log(`Numeros sorteados: ${gabarito_40}`)
+    if(contaAcertos_40(gabarito_40, apostas_40[i]) == 5)
+        console.log("Ganhador!")
+    else
+        console.log("Mais sorte da proxima vez")
+}
 
-conjuntoVetores_40.forEach((element, index) => {
-    console.log(`\n--- Jogador numero ${index + 1} ---\n`)
-    console.log(`Apostas: ${element}`)
-    console.log(`Numeros sorteados: ${vetor_40}`)
-    if(contaAcertos_40(vetor_40, element) == 5)
-        console.log("Ganhador")
-
-});
+/*
+41. Dado o objeto pessoa com propriedades nome e idade, acesse e imprima o valor de
+idade. Adicione uma nova propriedade chamada email ao objeto pessoa que já possui
+nome e idade.
+*/
+let pessoa_41 = {
+    nome: "Vini",
+    idade: 22
+}
+console.log(pessoa_41.idade)
+pessoa_41.email = "vinigj6754@gmail.com"
