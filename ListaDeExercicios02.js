@@ -1177,3 +1177,40 @@ resultado oficial e mostre uma mensagem ("Ganhador") se todos os números
 corresponderem ao resultado oficial. (Observação: não é necessário procurar por ternos
 e quadras, apenas por quinas.)
 */
+let vetor_40 = [1, 2, 3, 4, 5]
+let conjuntoVetores_40 = []
+
+let contaAcertos_40 = (gabarito, tentativa) =>{
+    let qtdAcertos = 0
+    gabarito.forEach((element, index) => {
+        if(element === tentativa[index])
+            qtdAcertos++
+    });
+    return qtdAcertos
+}
+
+/*Gerar automatico para teste
+for(let i = 0; i < 50; i++){
+    conjuntoVetores_40[i] = []
+    for(let j = 0; j < 5; j++){
+        conjuntoVetores_40[i][j] = Math.floor(Math.random() * 15 + 1)
+    }
+}*/
+
+//Lendo cada aposta
+for(let i = 0; i < 50; i++){
+    conjuntoVetores_40[i] = []
+    console.log(`\nJogador numero ${i + 1}`)
+    for(let j = 0; j < 5; j++){
+        conjuntoVetores_40[i][j] = prompt(`Digite o ${j+1}° numero: `)
+    }
+}
+
+conjuntoVetores_40.forEach((element, index) => {
+    console.log(`\n--- Jogador numero ${index + 1} ---\n`)
+    console.log(`Apostas: ${element}`)
+    console.log(`Numeros sorteados: ${vetor_40}`)
+    if(contaAcertos_40(vetor_40, element) == 5)
+        console.log("Ganhador")
+
+});
