@@ -1220,3 +1220,304 @@ let pessoa_41 = {
 }
 console.log(pessoa_41.idade)
 pessoa_41.email = "vinigj6754@gmail.com"
+
+/*
+42. Crie um objeto chamado dados que contém várias propriedades, incluindo números,
+strings e arrays. Escreva uma função que retorne um novo objeto apenas com as
+propriedades que são arrays.
+*/
+let dados_42 = {
+    number: 24,
+    string: "alguma frase",
+    arrayImpar: [1, 3, 5, 7, 9, 11],
+    arrayPar: [2, 4, 6, 8, 10, 12]
+}
+let filtrarArrays_42 = (objeto) => {
+    let resultado = {}
+    for(let chave in objeto)
+    if(Array.isArray(objeto[chave]))
+        resultado[chave] = objeto[chave]
+    return resultado
+}
+console.log(filtrarArrays_42(dados_42))
+
+/*
+43. Dado dois objetos, obj1 e obj2, escreva uma função que crie um novo objeto
+combinando as propriedades de ambos, onde as propriedades de obj2 têm precedência
+sobre as do obj1 em caso de conflitos.
+*/
+const obj1_43 = { a: 1, 
+    b: 2, 
+    c: 3 
+}
+const _43 = { b: 4, 
+    d: 5 
+}
+
+function combinarObjetos_43(obj1, obj2) {
+  return { ...obj1, ...obj2 }
+}
+console.log(combinarObjetos_43(obj1_43, _43))
+
+/*
+44. Escreva uma função que conte quantas propriedades do tipo string existem em um
+objeto e retorne esse número.
+*/
+const exemplo_44 = { nome: "João", 
+idade: 25, 
+cidade: "São Paulo", 
+ativo: true 
+}
+
+function contarStrings_44(obj) {
+  let contador = 0
+  for (let chave in obj) {
+    if (typeof obj[chave] === "string") {
+      contador++
+    }
+  }
+  return contador
+}
+console.log(contarStrings_44(exemplo_44))
+
+/*
+45. Dado um array de strings, crie um objeto onde cada string é uma chave, e seu valor é
+o número de vezes que a string aparece no array.
+*/
+const stringsArray_45 = ["maçã", "banana", "maçã", "laranja", "banana", "maçã"]
+
+function contarOcorrencias_45(array) {
+  let resultado = {}
+  array.forEach(element => {
+    resultado[element] = (resultado[element] || 0) + 1
+  })
+  return resultado
+}
+
+console.log(contarOcorrencias_45(stringsArray_45))
+
+/*
+46. Suponha que você tem um array de objetos onde cada objeto representa uma venda
+com vendedor e valor. Escreva uma função que retorne um objeto que sumarize o total
+de vendas por vendedor.
+*/
+const vendas_46 = [
+    { vendedor: "João", valor: 100 },
+    { vendedor: "Maria", valor: 200 },
+    { vendedor: "João", valor: 50 },
+    { vendedor: "Maria", valor: 150 }
+  ]
+  
+function sumarizarVendas_46(vendas) {
+  let resultado = {}
+  vendas.forEach(venda => {
+    resultado[venda.vendedor] = (resultado[venda.vendedor] || 0) + venda.valor
+  })
+  return resultado
+}
+  
+console.log(sumarizarVendas_46(vendas_46))
+  
+/*
+47. Crie uma função que transforme um objeto de entrada aplicando uma função
+fornecida a cada uma das propriedades do objeto, retornando um novo objeto com os
+resultados.
+*/
+const objetoEntrada_47 = { a: 1, b: 2, c: 3 }
+
+function transformarObjeto_47(obj, funcao) {
+  let resultado = {}
+  for (let chave in obj) {
+    resultado[chave] = funcao(obj[chave])
+  }
+  return resultado
+}
+let funcaoTeste_47 = (x) => {
+    return x * 2
+}
+console.log(transformarObjeto_47(objetoEntrada_47, funcaoTeste_47))
+
+/*
+48. Você recebe dois objetos que representam o inventário de duas lojas diferentes:
+inventarioLojaA e inventarioLojaB. Cada chave é um item, e o valor é a quantidade desse
+item em estoque. Escreva uma função que combine os inventários em um único objeto.
+Se um item aparecer em ambas as lojas, some as quantidades.
+*/
+const inventarioLojaA = { item1: 5, item2: 3, item3: 10 }
+const inventarioLojaB = { item2: 7, item3: 5, item4: 8 }
+
+function combinarInventarios(lojaA, lojaB) {
+  let resultado = { ...lojaA }
+  for (let item in lojaB) {
+    resultado[item] = (resultado[item] || 0) + lojaB[item]
+  }
+  return resultado
+}
+console.log(combinarInventarios(inventarioLojaA, inventarioLojaB))
+
+/*
+49. Você recebe um array de objetos representando transações financeiras. Cada
+transação possui id, valor, data, e categoria. Escreva uma função que retorne um objeto
+onde as chaves são as categorias, e os valores são arrays de transações pertencentes a
+essa categoria. Adicionalmente, inclua um subtotal de valores por categoria.
+*/
+const transacoes_49 = [
+    { id: 1, valor: 100, data: "2024-01-01", categoria: "Alimentação" },
+    { id: 2, valor: 200, data: "2024-01-02", categoria: "Transporte" },
+    { id: 3, valor: 50, data: "2024-01-03", categoria: "Alimentação" },
+    { id: 4, valor: 150, data: "2024-01-04", categoria: "Educação" }
+  ]
+  
+function categorizarTransacoes_49(transacoes) {
+  let resultado = {}
+  transacoes.forEach(transacao => {
+    if (!resultado[transacao.categoria]) {
+      resultado[transacao.categoria] = { transacoes: [], subtotal: 0 }
+    }
+    resultado[transacao.categoria].transacoes.push({
+      id: transacao.id,
+      data: transacao.data,
+      valor: transacao.valor
+    })
+    resultado[transacao.categoria].subtotal += transacao.valor
+  })
+  return resultado
+}
+
+const resultado_49 = categorizarTransacoes_49(transacoes_49)
+for (const categoria in resultado_49) {
+  console.log(`Categoria: ${categoria}`)
+  console.log('Transações:')
+  resultado_49[categoria].transacoes.forEach(transacao => {
+    console.log(`  ID: ${transacao.id}, Data: ${transacao.data}, Valor: ${transacao.valor}`)
+  })
+  console.log(`Subtotal: ${resultado_49[categoria].subtotal}`)
+  console.log('---')
+}
+
+/*
+50. Desenvolva um pequeno sistema de reserva de hotéis usando JavaScript. O sistema
+deverá ser capaz de interagir com o usuário através do console do navegador e manter
+um registro das reservas e hotéis disponíveis. Utilize objetos e arrays para gerenciar as
+informações. Não é necessário interface gráfica, apenas funcionalidade lógica.
+*/
+let hoteis_50 = []
+let reservas_50 = []
+let idHotel_50 = 0
+let idReserva_50 = 0
+
+const hotelFactory = (id, nome, cidade, quartos, quartosDisponiveis) => {
+    return {
+        id: id,
+        nome: nome,
+        cidade: cidade,
+        quartos: quartos,
+        quartosDisponiveis: quartosDisponiveis
+    }
+}
+
+const reservasFactory = (idReserva, hotel, cliente) => {
+    return {
+        idReserva: idReserva,
+        idHotel: hotel,
+        nomeCliente: cliente
+    }
+}
+
+const adicionarHoteis = (nome, cidade, quartos) => {
+    hoteis_50.push(hotelFactory(++idHotel_50, nome, cidade, quartos, quartos))
+}
+
+const buscarHoteis = (cidade) => {
+    let cont = 0
+    for(let hotel in hoteis_50){
+        if(hoteis_50[hotel].cidade == cidade)
+            console.log(`ID: ${hoteis_50[hotel].id}\nNome: ${hoteis_50[hotel].nome}\nCidade: ${hoteis_50[hotel].cidade}\nQuartos: ${hoteis_50[hotel].quartos}\nQuartos Disponiveis: ${hoteis_50[hotel].quartosDisponiveis}\n`)
+    }
+    return cont
+}
+
+const fazerReserva = (idHotel, cliente) => {
+    let hotel = hoteis_50.find(hotel => hotel.id == idHotel)
+    if (hotel) {
+        if (hotel.quartosDisponiveis > 0) {
+            reservas_50.push(reservasFactory(++idReserva_50, idHotel, cliente))
+            hotel.quartosDisponiveis--
+        }else
+            return -1
+    }else
+        return -1
+}
+
+const cancelarReserva = (idReserva) => {
+    let reservaIndex = reservas_50.findIndex(reserva => reserva.idReserva == idReserva)
+    if (reservaIndex !== -1) {
+        let idHotel = reservas_50[reservaIndex].idHotel
+        let hotelIndex = hoteis_50.findIndex(hotel => hotel.id == idHotel)
+        if (hotelIndex !== -1) {
+            hoteis_50[hotelIndex].quartosDisponiveis++
+        }
+        reservas_50.splice(reservaIndex, 1)
+    }
+}
+const listarReservas = () => {
+    console.log("Reservas ativas do Sistema")
+    for(let key in reservas_50){
+        let hotel = hoteis_50[hoteis_50.findIndex(hotel => hotel.id == reservas_50[key].idHotel)]
+        console.log(`\nID da Reserva: ${reservas_50[key].idReserva}\nNome do Cliente: ${reservas_50[key].nomeCliente}\nNome do Hotel: ${hotel.nome}\nCidade do Hotel: ${hotel.cidade}`)
+    }
+}
+let continua_50 = true;
+while(continua_50){
+    console.log("Sistema de Reservas de Quartos da Empresa +PraTi")
+    console.log("\nEscolha oque você deseja realizar")
+    console.log("1 - Cadastrar Hotel")
+    console.log("2 - Cadastrar Reserva")
+    console.log("3 - Cancelar Reserva")
+    console.log("4 - Buscar Hoteis")
+    console.log("5 - Listar Reservas")
+    console.log("6 - Sair do Sistema")
+    let escolha_50 = parseInt(prompt())
+    switch(escolha_50){
+        case 1:
+            console.log()
+            let nome_50 = prompt("Digite o nome do Hotel: ")
+            let cidade_50 = prompt("Digite a cidade do Hotel: ")
+            let quartos_50 = parseInt(prompt("Digite quantos quartos o Hotel possui: "))
+            adicionarHoteis(nome_50, cidade_50, quartos_50)
+            console.log()
+            break;
+        case 2:
+            console.log("\nLista de Hoteis\n")
+            for(let key in hoteis_50){
+                console.log(`Hotel numero ${hoteis_50[key].id}\nNome: ${hoteis_50[key].nome}\nCidade: ${hoteis_50[key].cidade}\nQuartos Disponiveis: ${hoteis_50[key].quartosDisponiveis}\n`)
+            }
+            let hotelEscolhido_50 = parseInt(prompt("Digite o numero do Hotel escolhido: "))
+            let nomeCliente_50 = prompt("Digite seu nome: ")
+            fazerReserva(hotelEscolhido_50, nomeCliente_50)
+            console.log("\nReserva realizada!\n")
+            break;
+        case 3:
+            console.log()
+            let reservaCancelada_50 = parseInt(prompt("Digite a reserva a ser cancelada: "))
+            cancelarReserva(reservaCancelada_50)
+            break;
+        case 4:
+            console.log()
+            let cidadeEscolhida_50 = prompt("Digite o nome da Cidade que deseja verificar: ")
+            console.log()
+            buscarHoteis(cidadeEscolhida_50)
+            break;
+        case 5:
+            console.log()
+            listarReservas()
+            console.log()
+            break;
+        case 6:
+            continua_50 = false
+            break;
+        default:
+            console.log("\nEscolha invalida!")
+            break;
+    }
+}
